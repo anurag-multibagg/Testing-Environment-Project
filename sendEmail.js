@@ -1,15 +1,9 @@
 const mailer = require("nodemailer");
 const dotenv = require("dotenv");
-const fs = require("fs");
 dotenv.config();
 
-const sendMail = async () => {
+const sendMail = async (result) => {
     try {
-        console.log("3");
-
-        const metricsTestCoverageHTML = fs.readFileSync('./coverage/test-report.html', 'utf-8');
-        const testCasesHTML = fs.readFileSync('./coverage/lcov-report/index.html', 'utf-8');
-
         const transporter = mailer.createTransport({
             host: "smtp.zoho.in",
             port: 465,
@@ -26,7 +20,7 @@ const sendMail = async () => {
             from: process.env.EMAIL_USER,
             to: process.env.RECEIVER_EMAIL,
             subject: `Tests Report/Coverage ${istDate}`,
-            html: `${testCasesHTML}<br/><hr/><br/>${metricsTestCoverageHTML}`
+            html: result
         };
 
         await transporter.sendMail(mailOptions);
@@ -37,7 +31,6 @@ const sendMail = async () => {
 };
 
 module.exports = { sendMail };
-
 
 
 
