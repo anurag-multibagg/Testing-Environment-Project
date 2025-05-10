@@ -1,11 +1,70 @@
 import axios from 'axios';
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
-//anurag
+
+describe('Public APIs Without API Key - Testing with Axios & Jest', () => {
+  test('Dog API - Get random image', async () => {
+    const res = await axios.get('https://dog.ceo/api/breeds/image/random');
+    expect(res.status).toBe(200);
+    expect(res.data.status).toBe('success');
+  });
+
+  test('Cat API - Get random image', async () => {
+    const res = await axios.get('https://api.thecatapi.com/v1/images/search');
+    expect(res.status).toBe(200);
+    expect(Array.isArray(res.data)).toBe(true);
+  });
+
+  test('Bored API - Get random activity', async () => {
+    const res = await axios.get('https://www.boredapi.com/api/activity');
+    expect(res.status).toBe(200);
+    expect(typeof res.data.activity).toBe('string');
+  });
+
+  test('ReqRes - Get user 2', async () => {
+    const res = await axios.get('https://reqres.in/api/users/2');
+    expect(res.status).toBe(200);
+    expect(res.data.data.id).toBe(2);
+  });
+
+  test('Agify - Predict age for Michael', async () => {
+    const res = await axios.get('https://api.agify.io?name=michael');
+    expect(res.status).toBe(200);
+    expect(res.data.name).toBe('michael');
+  });
+
+  test('Genderize - Predict gender for Emily', async () => {
+    const res = await axios.get('https://api.genderize.io?name=emily');
+    expect(res.status).toBe(200);
+    expect(res.data.name).toBe('emily');
+  });
+
+  test('Nationalize - Predict nationality for Nathan', async () => {
+    const res = await axios.get('https://api.nationalize.io?name=nathan');
+    expect(res.status).toBe(200);
+    expect(res.data.name).toBe('nathan');
+  });
+
+  test('Advice Slip API - Get random advice', async () => {
+    const res = await axios.get('https://api.adviceslip.com/advice');
+    expect(res.status).toBe(200);
+    expect(typeof res.data.slip.advice).toBe('string');
+  });
+
+  test('Kanye Rest - Get quote', async () => {
+    const res = await axios.get('https://api.kanye.rest/');
+    expect(res.status).toBe(200);
+    expect(typeof res.data.quote).toBe('string');
+  });
+
+  test('Numbers API - Get trivia for 42', async () => {
+    const res = await axios.get('http://numbersapi.com/42?json');
+    expect(res.status).toBe(200);
+    expect(res.data.number).toBe(42);
+  });
+
+});
 
 
-
-
-//soumendu
 describe('JSONPlaceholder API GET tests', () => {
   it('should return 100 posts', async () => {
     const res = await axios.get(`${BASE_URL}/posts`);
