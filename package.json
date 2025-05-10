@@ -9,7 +9,9 @@
     "lint": "next lint",
     "test": "jest",
     "test:unit": "jest --coverage",
-    "test:api": "jest --testPathPattern=apitest --coverage"
+    "test:api": "jest --testPathPattern=apitest --coverage",
+    "start:scheduler": "ts-node workers/scheduleDailyTestReportJob.ts",
+    "start:worker": "ts-node workers/dailyJobWorker.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -50,6 +52,7 @@
     "jest-environment-jsdom": "^29.5.0",
     "msw": "^1.2.2",
     "next-router-mock": "^0.9.6",
-    "supertest": "^7.1.0"
+    "supertest": "^7.1.0",
+    "ts-node": "^10.9.2"
   }
 }
